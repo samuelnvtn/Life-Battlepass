@@ -11,7 +11,8 @@ function addXP(){
         if (checkbox.checked) {
             xp += challenge;
         }
-    });
+    }); 
+    //test
 
     document.getElementById("xpDisplay").innerHTML = xp;
     console.log(xp);
