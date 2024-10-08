@@ -3,7 +3,7 @@
 
 *The ultimate way to gamify your life and tasks inspired by the legendary Halo franchise, especially Halo Infinite.*
 
-![We'll make it! | Source: Microsoft Copilot](/readme/spartans-tit.PNG)
+![We'll make it! | Source: Microsoft Copilot](/readme/spartans-tit.png)
 
 Life Battlepass aims to gamify life and everyday tasks in a whole new way. Its goal is to create a new generation To-Do list which is expanded by Challenges, XPs and Rewards for completing your tasks. Once this goal is completed, the Life Battlepass could be expanded once again with the implementation of Habit Tracker and other features. The ultimate goal is to become an amazing productivity platform for gamers.
 
