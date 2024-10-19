@@ -1,12 +1,47 @@
 * {
     padding: 0px;
     margin: 0px;
-    font-family: 'Rajdhani-bold';font-size: 22px;
+    font-family: 'Rajdhani';
 
 }
 
-body {
+html {
     background-image: url(/images/bg-4k.png);
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+
+a {
+    text-decoration: none; 
+}
+
+.topnav {
+    display: flex;
+}
+
+.nav {
+    display: flex;
+    gap: 10px;
+    margin-left: 50px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-right: 50px;
+}
+
+.equipped, .switcher, .challenges {
+
+    color: #82838a;
+    font-size: medium;
+    border: solid;
+}
+
+.navtext {
+    color: #82838a;
+    padding-left: 10px;
+    padding-right: 35px;
+}
+
+.equipped, .navtext{
+    color: white;
 }
