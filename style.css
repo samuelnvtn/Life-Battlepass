@@ -20,7 +20,7 @@ a {
     display: flex;
 }
 
-.nav {
+.tabs {
     display: flex;
     gap: 10px;
     margin-left: 50px;
@@ -33,15 +33,25 @@ a {
 
     color: #82838a;
     font-size: medium;
-    border: solid;
+    cursor: pointer;
 }
 
 .navtext {
     color: #82838a;
     padding-left: 10px;
     padding-right: 35px;
+    border: solid;
 }
 
-.equipped, .navtext{
+.tab-content div {
+    display: none;
+  }
+
+.tab-content .active {
+    display: block;
+  }
+
+  .navtext.active {
     color: white;
+    font-weight: bold;
 }
