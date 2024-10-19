@@ -1,51 +1,57 @@
 * {
     padding: 0px;
     margin: 0px;
-    font-family: 'Rajdhani-bold';font-size: 22px;
+    font-family: 'Rajdhani';
 
 }
 
-.top {
-    background-color: #141e22;
-    color:  #ffffff;
+body {
+    background-image: url("./images/bg-4k.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.top h1, i{
-    margin-left: 10px;
+
+a {
+    text-decoration: none; 
 }
 
-.desc {
-    display: flex;    
-    margin-bottom: 10px;
-    background-color: #142218;
-    color:#ffffff;
-}
-
-.descimg{
-    margin-left: auto;
-}
-
-.list ul {
-    list-style-type: none;
-}
-
-.list{
-    margin: 10px;
-}
-
-.listdesc{
-    margin-bottom: 10px;
-}
-
-.listtue{
-    margin-top: 10px;
-}
-
-.xp {
-    margin-top: 50px;
+.topnav {
     display: flex;
 }
 
-.xpID {
-    margin-left: 10px;
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-left: 50px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-right: 50px;
+}
+
+.equipped, .switcher, .challenges {
+
+    color: #82838a;
+    font-size: medium;
+    cursor: pointer;
+}
+
+.navtext {
+    color: #82838a;
+    padding-left: 10px;
+    padding-right: 35px;
+    border: solid;
+}
+
+.tab-content div {
+    display: none;
+  }
+
+.tab-content .active {
+    display: block;
+  }
+
+  .navtext.active {
+    color: white;
+    font-weight: bold;
 }
