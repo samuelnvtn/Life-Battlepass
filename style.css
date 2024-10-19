@@ -5,47 +5,8 @@
 
 }
 
-.top {
-    background-color: #141e22;
-    color:  #ffffff;
-}
-
-.top h1, i{
-    margin-left: 10px;
-}
-
-.desc {
-    display: flex;    
-    margin-bottom: 10px;
-    background-color: #142218;
-    color:#ffffff;
-}
-
-.descimg{
-    margin-left: auto;
-}
-
-.list ul {
-    list-style-type: none;
-}
-
-.list{
-    margin: 10px;
-}
-
-.listdesc{
-    margin-bottom: 10px;
-}
-
-.listtue{
-    margin-top: 10px;
-}
-
-.xp {
-    margin-top: 50px;
-    display: flex;
-}
-
-.xpID {
-    margin-left: 10px;
+body {
+    background-image: url(/images/bg-4k.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
