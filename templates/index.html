@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Life BattlePass</title>
+    <link rel="icon" type="image/x-icon" href="static/images/favicon1.png" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <script src="/static/js/main.js" defer></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Rajdhani"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="section">
+      <div class="topnav">
+        <div class="tabs">
+          <div class="equipped" data-target="equipped">
+            <p class="navtext active">EQUIPPED</p>
+          </div>
+
+          <div class="switcher" data-target="switcher">
+            <p class="navtext">SWITCHER</p>
+          </div>
+
+          <div class="challenges" data-target="challenges">
+            <p class="navtext">CHALLENGES</p>
+          </div>
+        </div>
+
+          <div class="xp">
+              <p class="xptext">{{total_xp}} XP</p>
+          </div>
+      </div>
+
+      <div class="tab-content">
+        <!-- EQUIPPED -->
+        <div id="equipped" class="active" style="color: white">
+            <a href="/add_reward">Add Reward</a>
+
+
+          <h1>Details for Operation: {{ operation['name'] }}</h1>
+            <p>{{ operation['description'] }}</p>
+<p class="operation-xp" data-operation-id="{{ operation.id }}"> Current XP: {{ operation['current_xp'] }} / {{ operation['xp_goal'] }}</p>
+            <p class="operation-level" data-operation-id="{{ operation.id }}">
+    Level: {{ operation['current_level'] }} / {{ operation['max_level'] }}
+</p>
+
+{% if operation %}
+            <div class="operation-progress">
+    <div class="progress-bar">
+        <div class="progress" data-operation-id="{{ operation.id }}" style="width: {{ (operation.current_xp % 1000) / 10 }}%;"></div>
+    </div>
+</div>
+{% else %}
+<p>No operation selected.</p>
+{% endif %}
+
+         <h2>Rewards for {{ operation.name }}</h2>
+            <ul>
+                {% for reward in rewards %}
+                  {% if reward['operation_id'] == operation['id'] %}
+
+        <li>
+            <strong>{{ reward.name }}</strong> - {{ reward.xp_required }} XP
+            <p>{{ reward.description }}</p>
+            {% if reward.image_url %}
+                <img src="{{ reward.image_url }}" alt="{{ reward.name }}" width="100">
+            {% endif %}
+                      {% endif %}
+        </li>
+        {% endfor %}
+        </ul>
+        </div>
+
+        <!-- SWITCHER -->
+          <div id="switcher" style="color: white">
+              <a href="/add_operation">Add Operation</a>
+                  <div class="switcher-container">
+                    {% for operation in operations %}
+                      <a href="{{ url_for('index', operation_id=operation['id']) }}" class="operation-card {% if operation.completed %}comp{% endif %}">
+                          <div class="remaining-days">
+                              <div class="days">
+                                  {{ operation.remaining_days }} Days
+                              </div>
+                              <div class="op">
+                                  OPERATION
+                              </div>
+
+                          </div>
+                            <div class="operation-name">
+                                <img src="{{ url_for('static', filename=operation.icon_url) }}" class="operation-icon">
+                                <h3>{{ operation.name }}</h3>
+                            </div>
+                        <img src="{{ url_for('static', filename=operation.image_url) }}" alt="{{ operation.name }}" />
+                      </a>
+                      {% endfor %}
+                  </div>
+          </div>
+
+        <!-- CHALLENGES -->
+        <div id="challenges" style="color: white">
+          <a href="/add_task">Add Task</a>
+
+         <div class="tasks-container">
+             <h2>DAILY</h2>
+            <div class="tasks-section d">
+                <div class="task-cards">
+                    {% for task in tasks %}
+                        {% if task['operation_id'] == operation['id'] and task['task_type'] == 'Daily' %}
+                    <div class="task-card-border">
+                         <div class="task-card {% if task['completed'] == 1 %}completed{% endif %}
+                            {% if task['xp_reward'] == 50 %}xp50{% elif task['xp_reward'] == 100 %}xp100
+                            {% elif task['xp_reward'] == 150 %}xp150{% else %}xp500{% endif %}">
+                                    <div class="task-card-icon  {% if task['xp_reward'] == 50 %}xp50{% elif task['xp_reward'] == 100 %}xp100
+                                        {% elif task['xp_reward'] == 150 %}xp150{% else %}xp500{% endif %}">
+                                        <img src="/static/images/task-icon.png">
+                                    </div>
+                                    <div class="task-card-content">
+                                        <div class="task-card-text">
+                                                <h3>{{ task['name'] }}</h3>
+                                                <p class="task-description">{{ task['description'] }}</p>
+                                        </div>
+                                        <div class="task-card-numbers">
+                                            <p class="task-due">{{ task['remaining_days'] }} Days</p>
+                                            <p class="task-xp">{{ task['xp_reward'] }} XP</p>
+                                            <button class="mark-completed-btn"
+                                                data-task-id="{{ task['id'] }}">
+                                                {% if task['completed'] == 1 %}{% endif %}
+                                            {% if task['completed'] == 1 %}Completed{% else %}Complete{% endif %}
+                                        </button>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+             <h2>WEEKLY</h2>
+            <div class="tasks-section w">
+                <div class="task-cards">
+                    {% for task in tasks %}
+                        {% if task['operation_id'] == operation['id'] and task['task_type'] == 'Weekly' %}
+                                        <div class="task-card-border">
+
+                                <div class="task-card {% if task['completed'] == 1 %}completed{% endif %} {% if task['xp_reward'] == 50 %}xp50{% elif task['xp_reward'] == 100 %}xp100
+                                {% elif task['xp_reward'] == 150 %}xp150{% else %}xp500{% endif %}">
+                                    <div class="task-card-icon  {% if task['xp_reward'] == 50 %}xp50{% elif task['xp_reward'] == 100 %}xp100
+                                    {% elif task['xp_reward'] == 150 %}xp150{% else %}xp500{% endif %}">
+                                        <img src="/static/images/task-icon.png">
+                                    </div>
+                                    <div class="task-card-content">
+                                    <div class="task-card-text">
+                                        <h3>{{ task['name'] }}</h3>
+                                    <p class="task-description">{{ task['description'] }}</p>
+                                    </div>
+
+                                    <div class="task-card-numbers">
+                                        <p class="task-due">{{ task['remaining_days'] }} Days</p>
+                                        <p class="task-xp">{{ task['xp_reward']}} XP</p>
+                                        <button class="mark-completed-btn"
+                                            data-task-id="{{ task['id'] }}">
+                                            {% if task['completed'] == 1 %}{% endif %}
+                                        {% if task['completed'] == 1 %}Completed{% else %}Complete{% endif %}
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+
+
+        </div>
+      </div>
+        <!-- VIDEO BG -->
+      <video id="background-video" preload autoplay loop muted>
+        <source src="static/images/bg.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </body>
+</html>

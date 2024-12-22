@@ -1,0 +1,21 @@
+<h1>Add a New Reward</h1>
+<form action="/add_reward" method="POST">
+    <label for="name">Reward Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="xp_required">XP Required:</label>
+    <input type="number" id="xp_required" name="xp_required" required><br>
+
+    <label for="image_url">Image URL:</label>
+    <input type="url" id="image_url" name="image_url"><br>
+
+    <label for="operation_id">Choose Operation:</label>
+    <select id="operation_id" name="operation_id" required>
+        {% for operation in operations %}
+            <option value="{{ operation.id }}">{{ operation.name }}</option>
+        {% endfor %}
+    </select><br>
+
+
+    <button type="submit">Add Reward</button>
+</form>

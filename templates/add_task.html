@@ -1,0 +1,45 @@
+<!-- add_task.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task</title>
+</head>
+<body>
+    <h1>Add a New Task</h1>
+    <form action="/add_task" method="POST">
+        <label for="name">Task Name:</label>
+        <input type="text" id="name" name="name" oninput="this.value = this.value.toUpperCase();" required><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea><br>
+
+        <label for="xp_reward">XP Reward:</label>
+        <select id="xp_reward" name="xp_reward" required>
+            <option value ="50">50</option>
+            <option value ="100">100</option>
+            <option value ="150">150</option>
+            <option value ="500">500</option>
+        </select><br>
+
+        <label for="due_date">Due Date:</label>
+        <input type="date" id="due_date" name="due_date" required><br>
+
+         <label for="task_type">Task Type:</label>
+        <select id="task_type" name="task_type" required>
+            <option value="Daily">Daily</option>
+            <option value="Weekly">Weekly</option>
+        </select><br>
+
+        <label for="operation_id">Choose Operation:</label>
+    <select id="operation_id" name="operation_id" required>
+        {% for operation in operations %}
+            <option value="{{ operation.id }}">{{ operation.name }}</option>
+        {% endfor %}
+    </select><br>
+
+        <button type="submit">Add Task</button>
+    </form>
+</body>
+</html>
